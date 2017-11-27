@@ -1,22 +1,22 @@
-Welcome to Tedega's documentation!
-======================================
-
-Contents:
+Willkommen zur Dokumentation von Tedega
+=======================================
 
 .. toctree::
    :maxdepth: 2
 
    readme
-   installation
-   usage
-   modules
+   architecture
+   components
+   build
    contributing
    authors
    history
+   literature
 
 Indices and tables
 ==================
 
-* :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
+
+.. * :ref:`genindex`
+.. * :ref:`modindex`

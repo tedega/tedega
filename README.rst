@@ -27,7 +27,6 @@ Dokumentation, Scripte um eine Anwendung auf der Basis von Tedega zu
 bootstrappen und installiert alle notwendigen Abhängigkeiten in der letzten
 stabilen Version.
 
-
 * Freie Software: MIT Lizenz
 * Dokumentation: https://tedega.readthedocs.io.
 * Projekt Status: Alpha, Konzeption
@@ -36,3 +35,42 @@ Funktionen
 ----------
 
 * TODO
+
+.. highlight:: shell
+
+Installation
+------------
+
+Stabiler Release
+^^^^^^^^^^^^^^^^
+
+Um Tediga zu installieren, führe folgendes Kommando in deinem Terminal
+aus:
+
+.. code-block:: console
+
+    $ pip install tedega
+
+Das ist die bevorzugte Methode um Tediga zu installieren, da sie immer die letzte stabile Version installiert.
+
+Wenn du `pip`_ nicht installiert hast, dann hilft die `Python Installation Anleitung`_.
+
+.. _pip: https://pip.pypa.io
+.. _Python Installation Anleitung: http://docs.python-guide.org/en/latest/starting/installation/
+
+
+Entwicklungsversion
+^^^^^^^^^^^^^^^^^^^
+
+Die Quellen von Tediga können vom `Github repo`_ geladen werden.
+
+Du kannst das öffentliche Repository klonen und dann instalieren:
+
+.. code-block:: console
+
+    $ git clone git://github.com/toirl/tedega
+    $ cd tedega
+    $ python setup.py install
+
+.. _Github repo: https://github.com/toirl/tedega
+.. _tarball: https://github.com/toirl/tedega/tarball/master
