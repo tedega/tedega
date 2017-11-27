@@ -6,8 +6,6 @@ Willkommen zur Dokumentation von Tedega
 
    readme
    architecture
-   components
-   authors
    history
    literature
 

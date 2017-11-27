@@ -31,10 +31,10 @@ stabilen Version.
 * Dokumentation: https://tedega.readthedocs.io.
 * Projekt Status: Alpha, Konzeption
 
-Funktionen
-----------
-
-* TODO
+.. Funktionen
+.. ----------
+..
+.. * TODO
 
 .. highlight:: shell
 
