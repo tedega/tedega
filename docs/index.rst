@@ -7,8 +7,6 @@ Willkommen zur Dokumentation von Tedega
    readme
    architecture
    components
-   build
-   contributing
    authors
    history
    literature
