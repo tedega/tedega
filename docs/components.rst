@@ -2,18 +2,14 @@ Komponenten
 ===========
 
 .. index::
-   pair: Komponenten; Service
-.. _service:
+   pair: Komponenten; Domain
+.. _domain:
 
-Service
--------
+Domain
+------
 
-.. index::
-   pair: Komponenten; Storage
-.. _storage:
-
-Storage
--------
+Konfiguration
+^^^^^^^^^^^^^
 
 .. index::
    pair: Komponenten; Core
@@ -23,11 +19,22 @@ Core
 ----
 
 .. index::
-   pair: Komponenten; Domain
-.. _domain:
+   pair: Komponenten; Service
+.. _service:
 
-Domain (Boilerplate)
---------------------
+Service
+-------
+
+.. index::
+   pair: Komponenten; Storage
+
+.. autofunction:: tedega_service.registry.config_service_endpoint
+.. autofunction:: tedega_service.service.start_service
+
+.. _storage:
+
+Storage
+-------
 
 .. index::
    pair: Komponenten; CLI
