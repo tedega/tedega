@@ -6,6 +6,7 @@ Willkommen zur Dokumentation von Tedega
 
    readme
    architecture
+   components
    history
    literature
 
