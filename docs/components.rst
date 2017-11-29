@@ -1,15 +1,10 @@
 Komponenten
 ===========
-
-.. index::
-   pair: Komponenten; Domain
-.. _domain:
-
-Domain
-------
-
-Konfiguration
-^^^^^^^^^^^^^
+Wie in im Abschnitt :ref:`architecture` beschrieben, besteht eine Microservice aus
+verschiednen Komponenten. In diesem Abschnitt sollen diese Komponenten näher
+in ihrer Funktion und Aufgaben beschrieben werden. Dabei werden insbesondere
+die Schnittstellen beschrieben, die für die Implementation einer Domain
+genutzt werden können bzw. müssen.
 
 .. index::
    pair: Komponenten; Core
@@ -39,29 +34,39 @@ Storage
 .. index::
    pair: Komponenten; CLI
 
-Logging
--------
+.. autofunction:: tedega_storage.storage.init_storage
+.. autofunction:: tedega_storage.storage.get_storage
+.. autofunction:: tedega_storage.storage.scoped_session
+.. autoclass:: tedega_storage.storage.Storage
+   :members:
 
-.. index::
-   pair: Komponenten; Logging
-   pair: Fluentd; Logging
+.. Logging
+.. -------
+..
+.. .. index::
+..    pair: Komponenten; Logging
+..    pair: Fluentd; Logging
+..
+.. MessageQueue
+.. ------------
+..
+.. .. index::
+..    pair: Komponenten; MessageQueue
+..    pair: RabbitMQ; MessageQueue
 
-MessageQueue
-------------
-
-.. index::
-   pair: Komponenten; MessageQueue
-   pair: RabbitMQ; MessageQueue
-
-Sonstiges
----------
-.. index::
-   pair: JSON; Vorhees
-
-Voorhees
-^^^^^^^^
-.. index::
-   pair: API; Connexion
-
-Connexion
-^^^^^^^^^
+.. .. index::
+..    pair: Komponenten; Domain
+.. .. _domain:
+..
+.. Domain
+.. ------
+..
+.. Konfiguration
+.. ^^^^^^^^^^^^^
+..
+.. Server
+.. """"""
+.. Datenbank
+.. """""""""
+.. * **TEDEGA_STORAGE_URI** Vorgabe ist eine flüchtige sqlite DB im
+..   Speicher.
