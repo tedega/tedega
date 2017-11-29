@@ -1,3 +1,5 @@
+.. _architecture:
+
 Architektur
 ===========
 Dieser Abschnitt gibt einen allgemeinen Überblick über den Aufbau und die
