@@ -271,29 +271,35 @@ Autorisierung erfordert.
 Die Autorisierung von Anfragen wird an zentraler Stelle durch die
 :ref:`service` Komponente durchgeführt. Die Überprüfung findet für jede
 Anfrage einmalig beim Eintreffen an der öffentlichen API des Service statt.
-Nur wenn diese Überprüfung erfolgreich ist, wird die Anfrage weiter
+Die Überprüfung der Autorisierung wird in zwei Schritten und an zwei Stellen
+durchgeführt:
+
+1. Zunächst überprüft der Service ganz grundlegende Dinge wie das Format, die
+   Integrität des Tokens, oder ob dieses noch gültig ist. Sobald eine dieser
+   ersten Überprüfungen fehlschlägt, wird die Anfrage abgewiesen.
+
+2. Danach findet eine spezifische Autorisierung statt. Sie findet im Kontext
+   der jeweiligen Domain und Funktion statt. Hierfür definiert die
+   :ref:`domain` eine spezielle Funktion, die alle Details der Autorisierung
+   implemetiert. Diese Funktion wird bei der Registrierung der jeweiligen
+   Methoden der API mit der Funktion *config_service_endpoint* als Parameter
+   übergeben. Im Bild ist das die Funktion *check_authorisation*. Sie nimmt
+   als Parameter das JWT entgegen auf dessen Basis die Überprüfung
+   durchgeführt werden kann.
+
+Nur wenn beide Überprüfungen erfolgreich sind, wird die Anfrage weiter
 bearbeitet. Eine erfolgreich überprüfte Anfrage wird nicht erneut überprüft.
 Alle weiteren Zugriff innerhalb des Service gelten als implizit autorisiert.
-Fragt ein Service einen anderen Service, so muss diese Anfrage erneut
-autorisiert werden. Hierzu sendet der Service bei der Anfrage das JWT zur
-Autorisierung einfach weiter.
 
-Die genauen Details der Autorisierung werden in der :ref:`domain` in einer
-speziellen Funktion definiert. In dem Bild ist das die Funktion
-*check_authorisation*. Diese nimmt als Parameter das JWT entgegen auf dessen
-Basis die Überprüfung durchgeführt werden kann. Die im JWT enthaltenen
-Information sind in :ref:`jwt` beschrieben.
+Unterabfragen an einen einen anderen Service, müssen erneut autorisiert
+werden. Hierzu sendet der Service bei der Anfrage das JWT zur Autorisierung
+einfach weiter.
 
-Diese Funktion wird bei der Registrierung der jeweiligen Methoden der API
-mit der Funktion *config_service_endpoint* als Parameter übergeben.
-Ist keine Autorisierung notwendig, muss eine entsprechende "Null"-Funktion
-definiert werden, die eine Anfrage immer autorisiert.
-
-.. _jwt:
-
-Aufbau JWT
-^^^^^^^^^^
-TODO
+.. .. _jwt:
+..
+.. Aufbau JWT
+.. ^^^^^^^^^^
+.. TODO
 
 
 .. _design:
