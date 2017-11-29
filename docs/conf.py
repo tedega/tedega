@@ -33,6 +33,8 @@ sys.path.insert(0, project_root)
 
 import tedega
 import tedega_service
+import tedega_storage
+import tedega_core
 
 # -- General configuration ---------------------------------------------
 
