@@ -387,22 +387,12 @@ sowie die Anzahl aller bisherigen Anfragen und einen feste Zeichenkette.
 Dieses Beispiel beinhaltet alle wichtigen Funktionen aus den verschiedenen
 Komponenten, die benötigt werden um einen Microservice zu bauen.
 
-Dieses Beispiel ist auch auf `Github Tedega examples
-<https://github.com/tedega/examples.git>`_ verfügbar und kann wie folgt
-gestartet werden::
-
-    git clone https://github.com/tedega/examples.git
-    cd examples/
-    python setup.py develop
-    cd examples/tedega_examples/minimal
-    python app.py
-
 API
 ^^^
-.. literalinclude:: ../examples/tedega_examples/minimal/swagger.yaml
+.. literalinclude:: ../examples/minimal/swagger.yaml
    :language: yaml
 
 Service
 ^^^^^^^
-.. literalinclude:: ../examples/tedega_examples/minimal/app.py
+.. literalinclude:: ../examples/minimal/app.py
    :language: python
