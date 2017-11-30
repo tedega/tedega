@@ -1,4 +1,4 @@
 -e git://github.com/toirl/voorhees.git#egg=voorhees
--e git://github.com/tedega/tedega_service.git#egg=tedega_service
+-e git://github.com/tedega/tedega_view.git#egg=tedega_view
 -e git://github.com/tedega/tedega_storage.git#egg=tedega_storage
 -e git://github.com/tedega/tedega_core.git#egg=tedega_core

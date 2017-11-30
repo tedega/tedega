@@ -32,7 +32,7 @@ project_root = os.path.dirname(cwd)
 sys.path.insert(0, project_root)
 
 import tedega
-import tedega_service
+import tedega_view
 import tedega_storage
 import tedega_core
 

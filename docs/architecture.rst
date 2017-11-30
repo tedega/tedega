@@ -19,7 +19,7 @@ Ideen (Insbesonderer zur :ref:`deployment`) durch das Buch "The DevOps Handbook"
 [DOP2016]_ inspiriert. Hilfreich bei der Modellierung von gut abgegrenzen
 Diensten war "Implementing Domain-Driven Design" [Ver2013]_.
 
-Zunächst wird der Aufbau eines einzelnen :ref:`service` beschrieben. Dann wird
+Zunächst wird der Aufbau eines einzelnen :ref:`view` beschrieben. Dann wird
 beleuchtet wie Microservices innerhalb der :ref:`anwendung` interagieren.
 Neben dem grundsätzlichen Aufbau werden auch die :ref:`security` betrachtet
 und :ref:`design` beschrieben, die bei der Entwicklung von Tediga berücksicht
@@ -66,10 +66,10 @@ Details zur Speicherung oder die Behandlung von Requests werden nicht
 behandelt, sondern werden an jeweils anderen Komponente delegiert. Die
 Komponenten kommunizieren ausschließlich über APIs miteinander.
 
-Die :ref:`service` Komponente dient als Einstieg (View) in den Microservice
-und behandelt sämtliche Aspekte der Behandlung von HTTP Anfragen. Sie macht
-die durch die `Domain` definierte API über eine REST-API öffentlich verfügbar.
-Sämtliche Zugriffe erfolgen ausschließlich über die durch den Service
+Die :ref:`view` Komponente dient als Einstieg in den Microservice und
+behandelt sämtliche Aspekte der Behandlung von HTTP Anfragen. Sie macht die
+durch die `Domain` definierte API über eine REST-API öffentlich verfügbar.
+Sämtliche Zugriffe erfolgen ausschließlich über die durch die View
 definierten REST-API.
 
 Die :ref:`storage` Komponente abstrahiert die Speicherung (Store) von Daten
@@ -271,12 +271,11 @@ Autorisierung erfordert.
 .. image:: _static/Tedega_Auth.svg
 
 Die Autorisierung von Anfragen wird an zentraler Stelle durch die
-:ref:`service` Komponente durchgeführt. Die Überprüfung findet für jede
-Anfrage einmalig beim Eintreffen an der öffentlichen API des Service statt.
-Die Überprüfung der Autorisierung wird in zwei Schritten und an zwei Stellen
-durchgeführt:
+:ref:`view` Komponente durchgeführt. Die Überprüfung findet für jede
+Anfrage einmalig beim Eingang in die View statt.  Die Überprüfung der
+Autorisierung wird in zwei Schritten und an zwei Stellen durchgeführt:
 
-1. Zunächst überprüft der Service ganz grundlegende Dinge wie das Format, die
+1. Zunächst überprüft die View ganz grundlegende Dinge wie das Format, die
    Integrität des Tokens, oder ob dieses noch gültig ist. Sobald eine dieser
    ersten Überprüfungen fehlschlägt, wird die Anfrage abgewiesen.
 

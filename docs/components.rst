@@ -14,17 +14,17 @@ Core
 ----
 
 .. index::
-   pair: Komponenten; Service
-.. _service:
+   pair: Komponenten; View
+.. _view:
 
-Service
--------
+View
+----
 
 .. index::
    pair: Komponenten; Storage
 
-.. autofunction:: tedega_service.registry.config_service_endpoint
-.. autofunction:: tedega_service.service.start_service
+.. autofunction:: tedega_view.registry.config_view_endpoint
+.. autofunction:: tedega_view.service.start_service
 
 .. _storage:
 
