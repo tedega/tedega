@@ -362,3 +362,47 @@ der Anwendung im Gesamten.
 .. [#] Das gilt besonders vor dem Hintergrund des frühen Entwicklungsstadiums
        von Tedega und dem Umstand das die Entwicklung derzeit eine
        One-Man-Show ist.
+
+Beispiel
+--------
+Im folgenden Beispiel wird ein einfacher Microservice implementiert. Dieser
+Service stellt unter dem Pfad */pings* eine einzige Methode zur Verfügung, die
+ohne weitere Parameter per einfache GET Anfrage aufgerufen werden kann.
+
+Jeder Aufruf dieser Adresse wird mit der aktuellen Zeit in eine Tabelle in der
+Datenbank geschrieben. Der Server beantwortet jede Anfrage mit einer
+JSON-Datenstruktur, die das Datum der Ersten und Letzten Anfrage enthält,
+sowie die Anzahl aller bisherigen Anfragen und einen feste Zeichenkette.
+
+.. important::
+    Ein Microservice muss immer als Python Paket implementiert werden. Der
+    hier beschriebene Code ist also nur ein Teil eines solchen Pakets.
+    Informationen darüber was mindestens in einem solchen Paket enthalten sein
+    muss finden sich im `Python Packaging Tutorial
+    <http://python-packaging.readthedocs.io/en/latest/minimal.html>`_.
+    Weiterführende Informationen zur Paketierung finden sich im `Python
+    Packaging User Guide
+    <https://packaging.python.org/tutorials/distributing-packages/#packaging-your-project>`_
+
+Dieses Beispiel beinhaltet alle wichtigen Funktionen aus den verschiedenen
+Komponenten, die benötigt werden um einen Microservice zu bauen.
+
+Dieses Beispiel ist auch auf `Github Tedega examples
+<https://github.com/tedega/examples.git>`_ verfügbar und kann wie folgt
+gestartet werden::
+
+    git clone https://github.com/tedega/examples.git
+    cd examples/
+    python setup.py develop
+    cd examples/tedega_examples/minimal
+    python app.py
+
+API
+^^^
+.. literalinclude:: ../examples/tedega_examples/minimal/swagger.yaml
+   :language: yaml
+
+Service
+^^^^^^^
+.. literalinclude:: ../examples/tedega_examples/minimal/app.py
+   :language: python
