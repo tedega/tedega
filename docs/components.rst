@@ -24,7 +24,7 @@ View
    pair: Komponenten; Storage
 
 .. autofunction:: tedega_view.registry.config_view_endpoint
-.. autofunction:: tedega_view.service.start_service
+.. autofunction:: tedega_view.server.start_server
 
 .. _storage:
 
