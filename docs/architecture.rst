@@ -366,6 +366,17 @@ Im folgenden Beispiel wird ein einfacher Microservice implementiert. Dieser
 Service stellt unter dem Pfad */pings* eine einzige Methode zur Verfügung, die
 ohne weitere Parameter per einfache GET Anfrage aufgerufen werden kann.
 
+Das `Beispiel auf Github <https://github.com/tedega/examples>`_ lässt sich wie
+folgt ausprobieren. Der Service lässt sich dann auf
+`http://localhost:5000/ui <http://localhost:5000/ui>`_ ausprobieren::
+
+    git clone https://github.com/tedega/examples
+    cd examples
+    python setup.py develop
+    python tedega_examples/app.py
+
+
+
 Jeder Aufruf dieser Adresse wird mit der aktuellen Zeit in eine Tabelle in der
 Datenbank geschrieben. Der Server beantwortet jede Anfrage mit einer
 JSON-Datenstruktur, die das Datum der Ersten und Letzten Anfrage enthält,
@@ -386,10 +397,10 @@ Komponenten, die benötigt werden um einen Microservice zu bauen.
 
 API
 ^^^
-.. literalinclude:: ../examples/minimal/swagger.yaml
+.. literalinclude:: examples/minimal/swagger.yaml
    :language: yaml
 
 Service
 ^^^^^^^
-.. literalinclude:: ../examples/minimal/app.py
+.. literalinclude:: examples/minimal/app.py
    :language: python

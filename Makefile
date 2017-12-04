@@ -64,6 +64,9 @@ coverage: ## check code coverage quickly with the default Python
 	$(BROWSER) htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
+
+	curl https://raw.githubusercontent.com/tedega/examples/master/tedega_examples/app.py -o docs/examples/minimal/app.py
+	curl https://raw.githubusercontent.com/tedega/examples/master/tedega_examples/swagger.yaml -o docs/examples/minimal/swagger.yaml
 	rm -f docs/tedega.rst
 	rm -f docs/modules.rst
 	sphinx-apidoc -o docs/ tedega
