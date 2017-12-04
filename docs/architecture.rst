@@ -7,8 +7,8 @@ Architektur von Tedega. Dabei wird beschrieben, wie mit Hilfe der verschiedenen
 Komponenten eine Anwendung bestehend aus verschiedenen Microservices erstellt
 und betrieben werden können.
 
-Detailierte Informationen, wie z.B., genaue Beschreibungen von APIs, finden
-sich in der Dokumentation der jeweiligen Komponente.
+Detailierte Informationen finden sich in der Dokumentation der jeweiligen
+Komponente.
 
 Über die Modellierung von Microservices gibt es viel Literatur. Auf die
 Quellen, die den Aufbau von Tediga maßgeblich beeinflusst haben möchte ich
@@ -39,18 +39,17 @@ implementiert, die die Aufgaben der jeweiligen Schicht übernimmt.
 
 Ziel dieser Architektur ist eine möglichst klare Abgrenzung und Trennung von
 Verantwortlichkeiten zwischen den Schichten. Diese Trennung wird durch die
-Implementation in unterschiedlichen Bibliotheken, mit eigener definierter API,
-weiter unterstrichen. Damit folgt die Architektur grundsätzlich der Idee
-des Single Responsibility Prinzip (SRP). Weiter ergibt sich die eine loose
-Kopplung zwischen den Schichten und dadurch die Flexibilität Microservices in
-unterschiedlichen Versionen einer Komponente zu betreiben, was das Risiko bei
-Updates minimiert.
+Implementation in unterschiedlichen Bibliotheken unterstrichen. Damit folgt
+die Architektur grundsätzlich der Idee des Single Responsibility Prinzip
+(SRP). Weiter ergibt sich die eine loose Kopplung zwischen den Schichten und
+dadurch die Flexibilität Microservices in unterschiedlichen Versionen einer
+Komponente zu betreiben, was das Risiko bei Updates minimiert.
 
 Als Ergebnis erhalten wir Komponenten, die über mehrere Microservices
 wiederverwendet werden können, und vermeiden so die Duplizierung von Code
 (DRY). Dadurch kann man sich bei der Implementation eines Microservice voll
-auf den Kern konzentrieren: Der Implementation der Geschäftslogik, und der
-Definition benötigten API innerhalb der `Domain`.
+auf den Kern konzentrieren: Der Implementation der Geschäftslogik innerhalb
+der `Domain`.
 
 .. image:: _static/Tedega.svg
 
@@ -61,20 +60,18 @@ Definition benötigten API innerhalb der `Domain`.
 Das Herzstück eines Microservice ist die :ref:`domain` Komponente. Sie ist der
 individuelle Teil eines Microservice und bestimmt wie ein Microservice
 funktioniert. Sie implementiert das Datenmodell (Modell) und alle Details der
-Geschäftslogik (Controller), die über eine API verfügbar sind.
-Details zur Speicherung oder die Behandlung von Requests werden nicht
-behandelt, sondern werden an jeweils anderen Komponente delegiert. Die
-Komponenten kommunizieren ausschließlich über APIs miteinander.
+Geschäftslogik (Controller). Details zur Speicherung oder die Behandlung von
+Requests werden nicht behandelt, sondern werden an jeweils anderen Komponente
+delegiert.
 
 Die :ref:`view` Komponente dient als Einstieg in den Microservice und
 behandelt sämtliche Aspekte der Behandlung von HTTP Anfragen. Sie macht die
-durch die `Domain` definierte API über eine REST-API öffentlich verfügbar.
+durch die `Domain` definierter Controller über eine REST-API öffentlich verfügbar.
 Sämtliche Zugriffe erfolgen ausschließlich über die durch die View
 definierten REST-API.
 
 Die :ref:`storage` Komponente abstrahiert die Speicherung (Store) von Daten
-und stellt der `Domain` eine API zur Verfügung, über die Daten aus dem Model
-gespeichert werden können.
+und erlaubt der `Domain` die Daten aus dem Model zu speichern.
 
 Die :ref:`core` Komponente stellt allgemeine Funktionalität für die übrigen
 Komponenten zur Verfügung.
@@ -147,7 +144,7 @@ anderen Quellen.
 Tediga sieht für die Kommunikation zwei verschiedene Arten vor:
 
 1. Direkte Kommunikation zwischen den Microservices. Diese findet
-   ausschließlich per HTTP über die jeweilige öffentliche API der Services
+   ausschließlich per HTTP über die jeweilige öffentliche REST-API der Services
    statt. Ein Service agiert dabei wie ein gewöhnlicher Client.
 2. Indirekte Kommunikation über eine Message-Queue. Diese wird verwendet, um
    anderen Services zu benachrichtigen. Dabei schreibt ein Service alle Dinge,
@@ -191,7 +188,7 @@ Tediga nutzt für die die zentrale Erfassung von Logs `Fluentd
 einheitlichen Form ein, und speichert diese nach Bedarf in verschieden
 Backends. Von dort können die Logs Sie dann mit Werkzeugen wie *Elasticsearch*
 oder *Hadop* analysiert werden.
-Tediga stellt den Anwendungen eine API zum Protokollieren zur Verfügung, um
+Tediga stellt den Anwendungen Funktionen zum Protokollieren zur Verfügung, um
 sicher zu stellen, dass die Daten in einer einheitlichen Form geloggt werden,
 was eine Voraussetzung für spätere Auswertungen ist.
 
@@ -283,7 +280,7 @@ Autorisierung wird in zwei Schritten und an zwei Stellen durchgeführt:
    der jeweiligen Domain und Funktion statt. Hierfür definiert die
    :ref:`domain` eine spezielle Funktion, die alle Details der Autorisierung
    implemetiert. Diese Funktion wird bei der Registrierung der jeweiligen
-   Methoden der API mit der Funktion *config_service_endpoint* als Parameter
+   Methoden der Controller mit der Funktion *config_service_endpoint* als Parameter
    übergeben. Im Bild ist das die Funktion *check_authorisation*. Sie nimmt
    als Parameter das JWT entgegen auf dessen Basis die Überprüfung
    durchgeführt werden kann.
