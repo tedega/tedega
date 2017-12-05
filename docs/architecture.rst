@@ -57,7 +57,7 @@ der `Domain`.
    pair: Schichtmodell; MVC
    pair: Schichtmodell; MVCS
 
-Das Herzstück eines Microservice ist die :ref:`domain` Komponente. Sie ist der
+Das Herzstück eines Microservice ist die `Domain` Komponente. Sie ist der
 individuelle Teil eines Microservice und bestimmt wie ein Microservice
 funktioniert. Sie implementiert das Datenmodell (Modell) und alle Details der
 Geschäftslogik (Controller). Details zur Speicherung oder die Behandlung von
@@ -73,7 +73,7 @@ definierten REST-API.
 Die :ref:`storage` Komponente abstrahiert die Speicherung (Store) von Daten
 und erlaubt der `Domain` die Daten aus dem Model zu speichern.
 
-Die :ref:`core` Komponente stellt allgemeine Funktionalität für die übrigen
+Die :ref:`share` Komponente stellt allgemeine Funktionalität für die übrigen
 Komponenten zur Verfügung.
 
 .. index::
@@ -183,7 +183,7 @@ Tediga einen Mechanismus für die Protokollierung vor, der die Informationen
 zentral in einer einheitlichen Form erfasst und verschiedenen Werkzeugen zur
 Analyse und Auswertung zur Verfügung stellt.
 
-Tediga nutzt für die die zentrale Erfassung von Logs `Fluentd
+Tedega nutzt für die die zentrale Erfassung von Logs `Fluentd
 <https://www.fluentd.org/>`_. Dieser sammelt alle zu Logs in einer
 einheitlichen Form ein, und speichert diese nach Bedarf in verschieden
 Backends. Von dort können die Logs Sie dann mit Werkzeugen wie *Elasticsearch*
@@ -211,10 +211,6 @@ Um eine Anwendung zu überwachen, sieht Tediga folgende Kategorien vor:
   Diensten. Die Kategorie für die Bearbeitungszeit lautet *PROCTIME*
 * **Status Antwort**. Jede Anfrage protokolliert den HTTP Status seiner
   Antwort. Die Kategorie für den Status lautet *RETURNCODE*
-* **Fehler und Warnungen**. Im Falle von Fehler und Warnungen werden diese
-  ebenfalls protokolliert. Dies können sowohl definierte Fehlermeldungen sein,
-  als auch Tracebacks der Anwendung. Meldungen werden mit der Kategorie
-  *ERROR* bzw. *WARNING* kategorisiert.
 * **Anfragen**. Sämtliche Anfragen an die Anwendung werden protokolliert. Das
   Umfasst die Url, Methode (GET, POST, PUT...) und mögliche Parameter. Sie
   werden in der Kategorie *REQUEST* markiert.
@@ -228,14 +224,30 @@ Um eine Anwendung zu überwachen, sieht Tediga folgende Kategorien vor:
 Formatierung
 """"""""""""
 Damit die Meldungen in einer zentralen Stelle systematisch ausgewertet werden
-können, müssen alle Meldungen in einem vorgegebenen Format vorliegen::
+können, müssen alle Meldungen in einem vorgegebenen Format vorliegen. Jede
+Logmeldung hat einen Tag welcher von Fluentd für das Routing von Logmeldungen
+genutzt werden kann::
 
-        TIME.HOST.CONTAINER.SERVICE.CATEGORY[.CORRELATION_ID] [LEVEL]: Message to be logged.
+        <HOST>.<SERVICE>[.<CONTAINER>]
+
+Die eigentlich Logmeldung wird in JSON Format gespeichert::
+
+        {
+            "type": "INFO",
+            "category": null,
+            "message": "I'm a log message",
+            "correlation_id": null,
+            "stack_trace": "None",
+            "host":"localhost",
+            "where":"modul.function.where.log.happens"
+        }
+
+Die folgende Tabelle gibt Informationen zu den wichtigsten Werten im Tag under
+Logmeldung.
 
 ============== ============
 Abschnitt      Beschreibung
 ============== ============
-TIME           Zeit im Format YYYY-mm-dd HH:MM
 HOST           Name des Rechners.
 CONTAINER      Name Containers.
 SERVICE        Name des Service
@@ -278,7 +290,7 @@ Autorisierung wird in zwei Schritten und an zwei Stellen durchgeführt:
 
 2. Danach findet eine spezifische Autorisierung statt. Sie findet im Kontext
    der jeweiligen Domain und Funktion statt. Hierfür definiert die
-   :ref:`domain` eine spezielle Funktion, die alle Details der Autorisierung
+   `Domain` eine spezielle Funktion, die alle Details der Autorisierung
    implemetiert. Diese Funktion wird bei der Registrierung der jeweiligen
    Methoden der Controller mit der Funktion *config_service_endpoint* als Parameter
    übergeben. Im Bild ist das die Funktion *check_authorisation*. Sie nimmt
@@ -359,6 +371,7 @@ der Anwendung im Gesamten.
 .. [#] Das gilt besonders vor dem Hintergrund des frühen Entwicklungsstadiums
        von Tedega und dem Umstand das die Entwicklung derzeit eine
        One-Man-Show ist.
+
 
 Beispiel
 --------

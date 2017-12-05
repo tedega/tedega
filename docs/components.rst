@@ -8,10 +8,17 @@ genutzt werden können bzw. müssen.
 
 .. index::
    pair: Komponenten; Core
-.. _core:
+.. _share:
 
-Core
-----
+Share
+-----
+
+Logging
+^^^^^^^
+
+.. autofunction:: tedega_share.logger.get_logger
+.. autoclass:: tedega_share.logger.Logger
+   :members: debug, info, warning, error
 
 .. index::
    pair: Komponenten; View
@@ -34,10 +41,10 @@ Storage
 .. index::
    pair: Komponenten; CLI
 
-.. autofunction:: tedega_storage.storage.init_storage
-.. autofunction:: tedega_storage.storage.get_storage
-.. autofunction:: tedega_storage.storage.scoped_session
-.. autoclass:: tedega_storage.storage.Storage
+.. autofunction:: tedega_storage.rdbms.init_storage
+.. autofunction:: tedega_storage.rdbms.get_storage
+.. autofunction:: tedega_storage.rdbms.scoped_session
+.. autoclass:: tedega_storage.rdbms.storage.Storage
    :members:
 
 .. Logging
