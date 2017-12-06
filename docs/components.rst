@@ -1,7 +1,7 @@
 Komponenten
 ===========
 Wie in im Abschnitt :ref:`architecture` beschrieben, besteht eine Microservice aus
-verschiednen Komponenten. In diesem Abschnitt sollen diese Komponenten näher
+verschiedenen Komponenten. In diesem Abschnitt sollen diese Komponenten näher
 in ihrer Funktion und Aufgaben beschrieben werden. Dabei werden insbesondere
 die Schnittstellen beschrieben, die für die Implementation einer Domain
 genutzt werden können bzw. müssen.
@@ -13,12 +13,12 @@ genutzt werden können bzw. müssen.
 Share
 -----
 
+.. _logging:
+
 Logging
 ^^^^^^^
-
-.. autofunction:: tedega_share.logger.get_logger
-.. autoclass:: tedega_share.logger.Logger
-   :members: debug, info, warning, error
+.. automodule:: tedega_share.logger
+   :members: Logger, init_logger, get_logger, log_proctime, monitor_connectivity
 
 .. index::
    pair: Komponenten; View

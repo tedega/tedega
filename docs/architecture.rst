@@ -192,70 +192,7 @@ Tediga stellt den Anwendungen Funktionen zum Protokollieren zur Verfügung, um
 sicher zu stellen, dass die Daten in einer einheitlichen Form geloggt werden,
 was eine Voraussetzung für spätere Auswertungen ist.
 
-Was wird geloggt?
-"""""""""""""""""
-
-Um eine Anwendung zu überwachen, sieht Tediga folgende Kategorien vor:
-
-* **Erreichbarkeit**. In regelmäßigen Abständen wird für jeden Dienst geprüft,
-  ob dieser prinzipiell erreichbar ist, oder ob z.B. ein Fehler im Netzwerk
-  vorliegt. Meldungen zur Erreichbarkeit haben die Kategorie *PING*.
-* **Auslastung RAM, CPU, Speicherplatz**. Wir holen in regelmäßigen Abständen
-  Informationen zur Auslastung von Arbeitsspeicher, Last und
-  Speicherplatz ab, um frühzeitig Flaschenhälse erkennen zu können. Die
-  entsprechenden Kategorien lauten *CPU*, *RAM* und *DISK*.
-* **Bearbeitungszeit**. Bei jeder Anfrage an einen Dienst wird die Antwortzeit
-  im Millisekunden protokolliert, die ein Dienst benötigt um die Anfrage zu
-  beantworten. Die Zeit summiert alle notwendigen Schritte auf die für die
-  Beantwortung durchgeführt werden. So auch eventuelle Abfragen zu anderen
-  Diensten. Die Kategorie für die Bearbeitungszeit lautet *PROCTIME*
-* **Status Antwort**. Jede Anfrage protokolliert den HTTP Status seiner
-  Antwort. Die Kategorie für den Status lautet *RETURNCODE*
-* **Anfragen**. Sämtliche Anfragen an die Anwendung werden protokolliert. Das
-  Umfasst die Url, Methode (GET, POST, PUT...) und mögliche Parameter. Sie
-  werden in der Kategorie *REQUEST* markiert.
-* **Authentifizierung und Autorisierung**. Wir speichern zu jeder Anfrage
-  Informationen zur Authentifizierung, bzw. Autorisierung in der
-  Kategorie *AUTH*
-* **Weitere Angaben**. Neben den oben beschriebenen Angaben können natürlich
-  auch beliebige weitere Angaben nach Bedarf protokolliert werden. Diese
-  sollten dann mit *CUSTOM* kategorisiert werden.
-
-Formatierung
-""""""""""""
-Damit die Meldungen in einer zentralen Stelle systematisch ausgewertet werden
-können, müssen alle Meldungen in einem vorgegebenen Format vorliegen. Jede
-Logmeldung hat einen Tag welcher von Fluentd für das Routing von Logmeldungen
-genutzt werden kann::
-
-        <HOST>.<SERVICE>[.<CONTAINER>]
-
-Die eigentlich Logmeldung wird in JSON Format gespeichert::
-
-        {
-            "type": "INFO",
-            "category": null,
-            "message": "I'm a log message",
-            "correlation_id": null,
-            "stack_trace": "None",
-            "host":"localhost",
-            "where":"modul.function.where.log.happens"
-        }
-
-Die folgende Tabelle gibt Informationen zu den wichtigsten Werten im Tag under
-Logmeldung.
-
-============== ============
-Abschnitt      Beschreibung
-============== ============
-HOST           Name des Rechners.
-CONTAINER      Name Containers.
-SERVICE        Name des Service
-CATEGORY       Art der Logmeldung. Siehe `Was wird geloggt?`
-CORRELATION_ID Wenn eine Anfrage zum ersten Mal auf einen Service trifft, wird eine eindeutige UUID generiert, die in allen weiteren Abfragen verwendet wird, um zusammengehörende Meldungen über verschiedene Services hinweg verfolgen zu können. Die Angabe ist optional, da nicht alle Meldungen in Services generiert werden, oder eine solche UUID benötigen.
-LEVEL          Gibt an ob es sich bei der Meldung um einen Fehler (ERROR), eine Warnung (WARNING), eine Information (INFO) oder Debug-Ausgabe ist (DEBUG). Die Vorgabe für eine Meldung ist INFO.
-============== ============
-
+Weitere Informationen zum Logging finden Sie in :ref:`logging`.
 
 .. index::
    single: Jason Web Token (JWT)
