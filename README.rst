@@ -31,10 +31,9 @@ stabilen Version.
 * Dokumentation: https://tedega.readthedocs.io.
 * Projekt Status: Alpha, Konzeption
 
-.. Funktionen
-.. ----------
-..
-.. * TODO
+Funktionen
+----------
+* Umfangreiches :ref:`logging` mit Fluentd
 
 .. highlight:: shell
 
