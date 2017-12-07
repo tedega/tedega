@@ -33,7 +33,7 @@ stabilen Version.
 
 Funktionen
 ----------
-* Umfangreiches :ref:`logging` mit Fluentd
+* Umfangreiches Logging mit Fluentd
 
 .. highlight:: shell
 
